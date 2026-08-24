@@ -1,0 +1,34 @@
+{
+  "formatVersion": "2",
+  "header": {
+    "description": "An SAP Fiori application.",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "appType": "ui5",
+    "catalogId": "SAP_TC_UI5_REPO_UIAD",
+    "targetMappingTitle": "Mass Change Sales Order Items"
+  },
+  "ui5AppDetails": {
+    "appId": "mchso"
+  },
+  "navigation": {
+    "targetMappingId": "UI5R_242BFCA280E94A7F81492DBE586DF87343BB3C29_TM",
+    "semanticObject": "ZMC_SO",
+    "action": "display",
+    "desktop": true,
+    "tablet": true,
+    "phone": true
+  },
+  "tiles": [
+    {
+      "id": "UI5R_242BFCA280E94A7F81492DBE586DF87343BB3C29_AL",
+      "tileType": "static",
+      "isDefault": true,
+      "standard": {
+        "title": "Mass Change Sales Order Items"
+      }
+    }
+  ]
+}

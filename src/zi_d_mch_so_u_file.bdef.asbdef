@@ -1,0 +1,101 @@
+managed implementation in class zbp_i_d_mch_so_u_file unique;
+strict ( 2 );
+
+with draft;
+
+define behavior for ZI_D_MCH_SO_U_FILE alias ManageFile
+persistent table ztb_m_mco_so_upl
+draft table ztbm_mco_so_up_d
+etag master ZCount
+lock master total etag ZCount
+authorization master ( global )
+early numbering
+{
+  create ( authorization : global );
+  update ( features : instance );
+  delete ( features : instance );
+
+  field ( readonly ) Uuid, ZCount, Countline, Createdbyuser, Createddate, Changedbyuser, Changeddate, Filename;
+
+  association _DataFile { with draft; create; }
+
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+
+  static action uploadExcel parameter zabs_file_crud_poc;
+  static action downloadFile result [1] zabs_file_crud_poc;
+  static action downloadTemplate;
+
+  determination getExcelData on save { field Filename; }
+  determination setStatusToOpen on modify { create; }
+
+  mapping for ztb_m_mco_so_upl
+    {
+      Uuid          = uuid;
+      ZCount        = zcount;
+      ZcountDone    = zcount_done;
+      Status        = status;
+      Attachment    = attachment;
+      Mimetype      = mimetype;
+      Filename      = filename;
+      Countline     = countline;
+      Createdbyuser = createdbyuser;
+      Createddate   = createddate;
+      Changedbyuser = changedbyuser;
+      Changeddate   = changeddate;
+    }
+}
+
+define behavior for ZI_D_MCH_SO_U_DATA alias DataFile
+persistent table ztb_d_mch_so_upl
+draft table ztbd_mch_so_up_d
+lock dependent by _ManageFile
+authorization dependent by _ManageFile
+//etag master <field_name>
+with additional save
+{
+  update;
+  delete;
+
+  field ( numbering : managed, readonly ) Uuid;
+  field ( readonly ) Uuidfile, CreatedBy, CreatedAt, LocalLastChangedAt, LastChangedAt, LastChangedBy;
+
+  association _ManageFile { with draft; }
+
+  action ( features : instance ) PostConfirm result [1] $self;
+  //  action ( features : instance ) setJob result [1] $self;
+
+  determination setStatusToUpdate on modify { field MessageType; }
+
+  mapping for ztb_d_mch_so_upl
+    {
+      Uuid                  = uuid;
+      Uuidfile              = uuidfile;
+      Status                = status;
+      Type                  = type;
+      SalesOrder            = sales_order;
+      SalesOrderItem        = sales_order_item;
+      Material              = material;
+      Plant                 = plant;
+      OrderQuantity         = order_quantity;
+      SalesUnit             = sales_unit;
+      ConditionType         = condition_type;
+      ConditionAmount       = condition_amount;
+      Currency              = currency;
+      ConditionPricingUnit  = condition_pricing_unit;
+      TextPriceApproval     = text_price_approval;
+      TextOrderTolerance    = text_order_tolerance;
+      TextSalesNoteCustomer = text_sales_note_customer;
+      CustomerReference     = customer_reference;
+      MessageType           = messagetype;
+      Message               = message;
+      CreatedBy             = created_by;
+      CreatedAt             = created_at;
+      LastChangedBy         = last_changed_by;
+      LocalLastChangedAt    = local_last_changed_at;
+      LastChangedAt         = last_changed_at;
+    }
+}

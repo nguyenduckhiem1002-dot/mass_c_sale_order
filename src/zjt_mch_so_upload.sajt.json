@@ -1,0 +1,19 @@
+{
+  "formatVersion": "1",
+  "header": {
+    "description": "Application Job Template",
+    "originalLanguage": "en",
+    "abapLanguageVersion": "cloudDevelopment"
+  },
+  "generalInformation": {
+    "catalogName": "ZAJCE_MASS_C_SO"
+  },
+  "parameters": {
+    "valueRangesParameters": [
+      {
+        "name": "HDR_ID",
+        "valueRanges": []
+      }
+    ]
+  }
+}

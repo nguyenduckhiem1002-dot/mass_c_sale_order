@@ -1,0 +1,6 @@
+@EndUserText.label: 'Service Definition Manage File'
+define service ZSD_M_MCH_SO_U_FILE {
+  expose ZC_M_MCH_SO_U_FILE;
+  expose ZC_D_MCH_SO_U_DATA;
+  expose zi_req_sta_crud_poc_vh as StatusVH;
+}

@@ -1,0 +1,33 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZC_M_MCH_SO_U_FILE alias ManageFile
+{
+//  use create;
+  use update ;
+  use delete;
+
+  use action uploadExcel;
+  use action downloadFile;
+  use action downloadTemplate;
+
+  use action Activate;
+  use action Discard;
+  use action Edit;
+  use action Resume;
+  use action Prepare;
+
+  use association _DataFile { create; with draft; }
+}
+
+define behavior for ZC_D_MCH_SO_U_DATA alias DataFile
+{
+  use update;
+  use delete;
+
+  use action PostConfirm;
+//  use action setJob;
+
+  use association _ManageFile { with draft; }
+}

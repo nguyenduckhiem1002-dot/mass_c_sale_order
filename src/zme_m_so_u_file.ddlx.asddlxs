@@ -1,0 +1,122 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo: { typeName: 'General',
+                  typeNamePlural: 'Mass Change Sales Order Items',
+                  title: { value: 'Filename' }
+    }
+}
+@UI.lineItem: [{criticality: 'Criticality'}]
+@UI.presentationVariant: [{
+  sortOrder: [{ by: 'createddate', direction: #DESC }],
+  visualizations: [{ type: #AS_LINEITEM }]
+}]
+annotate entity ZC_M_MCH_SO_U_FILE with
+{
+  @UI.facet: [
+    { id: 'General',
+      purpose: #STANDARD,
+      position: 10,
+      isPartOfPreview: true,
+      label: 'General',
+      type: #COLLECTION,
+      targetQualifier: 'General' },
+    { id: 'BasicInfo',
+      purpose: #STANDARD,
+      parentId: 'General',
+      position: 10,
+      isPartOfPreview: true,
+      label: 'Basic Info',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'QFBasicInfo' },
+    { id: 'Items',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Data File',
+      position: 20,
+      targetElement: '_DataFile' }
+    ]
+  @UI.lineItem       : [{ position: 10 },
+                        { type: #FOR_ACTION, dataAction: 'downloadTemplate', label: 'Download Template' }]
+  @UI.identification : [{ position: 10 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 10 ,  qualifier: 'QFBasicInfo'  }]
+  @UI.hidden: true
+  Uuid;
+
+  @UI.lineItem       : [{ position: 10 }]
+  @UI.identification : [{ position: 10 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 20 ,  qualifier: 'QFBasicInfo'  }]
+  @EndUserText.label: 'No. '
+  Zcount;
+
+  @UI.lineItem       : [{ position: 80 }]
+  @UI.identification : [{ position: 80 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 20 ,  qualifier: 'QFBasicInfo'  }]
+  @EndUserText.label: 'Total successful lines'
+  ZcountDone;
+
+  @UI.selectionField : [{ position: 20 }]
+  @UI.lineItem       : [{ position: 20, label: 'Status' , criticality: 'Criticality' }]
+  @UI.identification : [{ position: 20 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 30 ,  qualifier: 'QFBasicInfo'  }]
+  @UI.dataPoint : { title: 'Status', criticality: 'Criticality' }
+  Status;
+
+  @Consumption.filter.hidden: true
+  Criticality;
+
+  @UI.hidden: true
+  OverallStatusText;
+
+  @UI.lineItem       : [{ position: 30 }]
+  @UI.identification : [{ position: 30 }]
+  @Consumption.filter.hidden: true
+  Attachment;
+
+  @UI.lineItem       : [{ position: 130 }]
+  @UI.identification : [{ position: 130 }]
+  @Consumption.filter.hidden: true
+  Mimetype;
+
+  //  @UI.selectionField : [{ position: 120 }]
+  @UI.lineItem       : [{ position: 120 }]
+  @UI.identification : [{ position: 120 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 60 ,  qualifier: 'QFBasicInfo'  }]
+  Filename;
+
+  @UI.selectionField : [{ position: 70 }]
+  @UI.lineItem       : [{ position: 70 }]
+  @UI.identification : [{ position: 70 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 70 ,  qualifier: 'QFBasicInfo'  }]
+  @EndUserText.label: 'Total line of File'
+  @Consumption.filter.hidden: true
+  Countline;
+
+  @UI.selectionField : [{ position: 90 }]
+  @UI.lineItem       : [{ position: 90 }]
+  @UI.identification : [{ position: 90 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 80 ,  qualifier: 'QFBasicInfo'  }]
+  createdbyuser;
+
+  @UI.selectionField : [{ position: 90 }]
+  @UI.lineItem       : [{ position: 90 }]
+  @UI.identification : [{ position: 90 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 90 ,  qualifier: 'QFBasicInfo'  }]
+  createddate;
+
+  //  @UI.selectionField : [{ position: 140 }]
+  @UI.lineItem       : [{ position: 140 }]
+  @UI.identification : [{ position: 140 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 100 ,  qualifier: 'QFBasicInfo'  }]
+  changedbyuser;
+
+  //  @UI.selectionField : [{ position: 110 }]
+  @UI.lineItem       : [{ position: 150 }]
+  @UI.identification : [{ position: 150 }]
+  @UI.fieldGroup     : [ { type: #STANDARD,  position: 110 ,  qualifier: 'QFBasicInfo'  }]
+  changeddate;
+
+  /* Associations */
+  //  _DataFile;
+  //  _OverallStatus;
+
+}

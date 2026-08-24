@@ -1,0 +1,202 @@
+@Metadata.layer: #CORE
+@UI:{
+    headerInfo: { typeName: 'Sales Order Update Data',
+                  typeNamePlural: 'Sales Order Update Data',
+                  title: { value: 'SalesOrder' }
+    }
+}
+@UI.lineItem: [{criticality: 'Criticality'}]
+annotate entity ZC_D_MCH_SO_U_DATA with
+{
+  @UI.facet: [
+    { id: 'General',
+      purpose: #STANDARD,
+      position: 10,
+      isPartOfPreview: true,
+      label: 'General',
+      type: #COLLECTION,
+      targetQualifier: 'General' },
+    { id: 'BasicInfo',
+      purpose: #STANDARD,
+      parentId: 'General',
+      position: 10,
+      isPartOfPreview: true,
+      label: 'Basic Info',
+      type: #FIELDGROUP_REFERENCE,
+      targetQualifier: 'QFBasicInfo' },
+    { id: 'ManageFile',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Attachment',
+      position: 20,
+      targetElement: '_ManageFile' }
+    ]
+
+
+  @UI.lineItem: [{ position: 20, label: 'Message Type' , criticality: 'Criticality'  },
+             { label: 'Post Document',
+               dataAction: 'PostConfirm',
+               type: #FOR_ACTION,
+               invocationGrouping: #CHANGE_SET
+             }]
+
+  @UI.hidden: true
+  Uuid;
+
+  @UI.hidden: true
+  Uuidfile;
+
+  @UI.selectionField : [{ position: 10 }]
+  @UI.lineItem       : [{ position: 10 }]
+  @UI.identification : [{ position: 10 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 10, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Type'
+  Type;
+
+  @UI.selectionField : [{ position: 20 }]
+  @UI.lineItem       : [{ position: 20, label: 'Status', criticality: 'Criticality' }]
+  @UI.identification : [{ position: 20 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 20, qualifier: 'QFBasicInfo' }]
+
+  Status;
+
+  @Consumption.filter.hidden: true
+  Criticality;
+
+  @UI.selectionField : [{ position: 30 }]
+  @UI.lineItem       : [{ position: 30 }]
+  @UI.identification : [{ position: 30 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 30, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Sales Order'
+  SalesOrder;
+
+  @UI.selectionField : [{ position: 40 }]
+  @UI.lineItem       : [{ position: 40 }]
+  @UI.identification : [{ position: 40 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 40, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Item'
+  SalesOrderItem;
+
+  @UI.selectionField : [{ position: 50 }]
+  @UI.lineItem       : [{ position: 50 }]
+  @UI.identification : [{ position: 50 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 50, qualifier: 'QFBasicInfo' }]
+  Material;
+
+  @UI.selectionField : [{ position: 60 }]
+  @UI.lineItem       : [{ position: 60 }]
+  @UI.identification : [{ position: 60 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 60, qualifier: 'QFBasicInfo' }]
+  Plant;
+
+  @UI.lineItem       : [{ position: 70 }]
+  @UI.identification : [{ position: 70 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 70, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Order Qty'
+  OrderQuantity;
+
+//  @UI.lineItem       : [{ position: 80 }]
+//  @UI.identification : [{ position: 80 }]
+//  @UI.fieldGroup     : [ { type: #STANDARD, position: 80, qualifier: 'QFBasicInfo' }]
+//  SalesUnit;
+
+  @UI.selectionField : [{ position: 90 }]
+  @UI.lineItem       : [{ position: 90 }]
+  @UI.identification : [{ position: 90 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 90, qualifier: 'QFBasicInfo' }]
+  
+  @EndUserText.label: 'Condition Type'
+  ConditionType;
+
+  @UI.lineItem       : [{ position: 100 }]
+  @UI.identification : [{ position: 100 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 100, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Amount'
+  ConditionAmount;
+
+//  @UI.lineItem       : [{ position: 110 }]
+//  @UI.identification : [{ position: 110 }]
+//  @Consumption.filter.hidden: true
+//  @UI.fieldGroup     : [ { type: #STANDARD, position: 110, qualifier: 'QFBasicInfo' }]
+//  Currency;
+
+  @UI.lineItem       : [{ position: 120 }]
+  @UI.identification : [{ position: 120 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 120, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Per'
+  ConditionPricingUnit;
+
+  @UI.lineItem       : [{ position: 130 }]
+  @UI.identification : [{ position: 130 }]
+  @Consumption.filter.hidden: true
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 130, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Số duyệt giá'
+  TextPriceApproval;
+
+  @UI.lineItem       : [{ position: 140 }]
+  @UI.identification : [{ position: 140 }]
+  @Consumption.filter.hidden: true
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 140, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Dung sai đơn hàng'
+  TextOrderTolerance;
+
+  @UI.lineItem       : [{ position: 150 }]
+  @UI.identification : [{ position: 150 }]
+  @Consumption.filter.hidden: true
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 150, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Sales Note for Customer'
+  TextSalesNoteCustomer;
+
+  @UI.selectionField : [{ position: 160 }]
+  @UI.lineItem       : [{ position: 160 }]
+  @UI.identification : [{ position: 160 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 160, qualifier: 'QFBasicInfo' }]
+  @EndUserText.label: 'Customer Reference'
+  CustomerReference;
+
+  @UI.lineItem       : [{ position: 170, criticality: 'Criticality' }]
+  @UI.identification : [{ position: 170 }]
+  @Consumption.filter.hidden: true
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 170, qualifier: 'QFBasicInfo' }]
+    @UI.dataPoint : { title: 'Message Type', criticality: 'Criticality' }
+  @EndUserText.label: 'Message Type'
+  Messagetype;
+
+  @UI.lineItem       : [{ position: 180 }]
+  @UI.identification : [{ position: 180 }]
+  @Consumption.filter.hidden: true
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 180, qualifier: 'QFBasicInfo' }]
+  Message;
+
+  @UI.selectionField : [{ position: 190 }]
+  @UI.lineItem       : [{ position: 190 }]
+  @UI.identification : [{ position: 190 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 190, qualifier: 'QFBasicInfo' }]
+  CreatedBy;
+
+  @UI.selectionField : [{ position: 200 }]
+  @UI.lineItem       : [{ position: 200 }]
+  @UI.identification : [{ position: 200 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 200, qualifier: 'QFBasicInfo' }]
+  CreatedAt;
+
+  @UI.selectionField : [{ position: 210 }]
+  @UI.lineItem       : [{ position: 210 }]
+  @UI.identification : [{ position: 210 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 210, qualifier: 'QFBasicInfo' }]
+  LastChangedBy;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+
+  @UI.selectionField : [{ position: 220 }]
+  @UI.lineItem       : [{ position: 220 }]
+  @UI.identification : [{ position: 220 }]
+  @UI.fieldGroup     : [ { type: #STANDARD, position: 220, qualifier: 'QFBasicInfo' }]
+  LastChangedAt;
+
+  /* Associations */
+  //  _ManageFile;
+  //  _OverallStatus;
+
+}
